@@ -1,15 +1,22 @@
 let allAi = async () => {
-    let res = await fetch('https://openapi.programming-hero.com/api/ai/tools')
-    let data = await res.json()
-    let allData = data.data.tools
-
-    showAllData(allData)
+    
+        let res = await fetch('https://openapi.programming-hero.com/api/ai/tools')
+        let data = await res.json()
+        let allData = data.data.tools
+    
+        showAllData(allData)
 }
 
 allAi()
 
 let showAllData = (allData) => {
+
+    allData.splice(5,1);
+
+    allData = allData.slice(0,6);
+    
     let cardParent = document.getElementById('cardParent');
+    cardParent.textContent = '';
 
     allData.forEach(item => {
         let div = document.createElement('div');
@@ -45,6 +52,11 @@ let showAllData = (allData) => {
             </div>
         `
         cardParent.appendChild(div)
-        console.log(item)
+        // console.log(item)
     });
+}
+
+
+let handleShowAll = () => {
+    showAllData(true)
 }
